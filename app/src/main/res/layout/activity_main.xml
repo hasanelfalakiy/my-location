@@ -2,48 +2,31 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="13dp"
+    style="@style/AllMatchParent"
     tools:context=".MainActivity">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        style="@style/TextView"
         android:layout_marginTop="179dp"
-        android:textSize="27sp"
-        android:text="latitude"
+        android:text="@string/latitude"
         android:id="@+id/tv_latitude"/>
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="13dp"
+        style="@style/TextView"
         android:layout_below="@id/tv_latitude"
-        android:text="longitude"
-        android:textSize="27sp"
+        android:text="@string/longitude"
         android:id="@+id/tv_longitude"/>
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="13dp"
+        style="@style/TextView"
         android:layout_below="@id/tv_longitude"
-        android:text="elevation"
-        android:textSize="27sp"
+        android:text="@string/elevation"
         android:id="@+id/tv_elevation"/>
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="13dp"
+        style="@style/TextView"
         android:layout_below="@id/tv_elevation"
-        android:text="acuration"
-        android:textSize="27sp"
+        android:text="@string/acuration"
         android:id="@+id/tv_acuration"/>
 
     <Button
@@ -52,8 +35,8 @@
         android:layout_below="@id/tv_acuration"
         android:layout_marginTop="79dp"
         android:layout_centerHorizontal="true"
-        android:text="Refresh"
+        android:text="@string/find_location"
         android:textAllCaps="false"
-        android:id="@+id/btn_refresh" />
+        android:id="@+id/btn_find" />
 
 </RelativeLayout>
