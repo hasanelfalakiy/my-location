@@ -11,6 +11,8 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import kotlin.math.abs
 import kotlin.math.round
+import android.location.Geocoder
+import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
 
@@ -65,9 +67,30 @@ class MainActivity : AppCompatActivity() {
                 longitude.text = "Longitude: ${convertToDegrees(doubleLongitude)}"
                 elevation.text = "Elevation: ${doubleElevation.round(2)} meter"
                 acuration.text = "Acuration: $floatAcuration meter"
+                // kode getKecamatan
+                getAddress(doubleLatitude, doubleLongitude)
             }
         }
     }
+    
+    private fun getAddress(latitude: Double, longitude: Double) {
+        val geocoder = Geocoder(this, Locale.getDefault())
+        try {
+            val addresses = geocoder.getFromLocation(latitude, longitude, 1)
+            if (!addresses.isNullOrEmpty()) {
+                val address = addresses[0]
+                val kecamatan = address.subLocality
+                // set text ke TextView dengan id tv_kecamatan
+                findViewById<TextView>(R.id.tv_kecamatan).text = "$kecamatan"
+            } else {
+                // handle kasus ketika addresses kosong atau null
+                findViewById<TextView>(R.id.tv_kecamatan).text = "Error kecamatan tidak ditemukan"
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
 
     private fun convertToDegrees(decimals: Double): String {
         var degree = abs(decimals).toInt().toString()

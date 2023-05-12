@@ -1,42 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    style="@style/AllMatchParent"
-    tools:context=".MainActivity">
+<RelativeLayout
+     xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     xmlns:tools="http://schemas.android.com/tools"
+     style="@style/AllMatchParent"
+     tools:context=".MainActivity">
+     
+    <TextView
+         style="@style/TextView"
+         android:layout_marginTop="179dp"
+         android:text="@string/kecamatan"
+         android:id="@+id/tv_kecamatan" />
 
     <TextView
-        style="@style/TextView"
-        android:layout_marginTop="179dp"
-        android:text="@string/latitude"
-        android:id="@+id/tv_latitude"/>
+         android:layout_below="@id/tv_kecamatan"
+         style="@style/TextView"
+         android:text="@string/latitude"
+         android:id="@+id/tv_latitude" />
 
     <TextView
-        style="@style/TextView"
-        android:layout_below="@id/tv_latitude"
-        android:text="@string/longitude"
-        android:id="@+id/tv_longitude"/>
+         android:layout_below="@id/tv_latitude"
+         style="@style/TextView"
+         android:text="@string/longitude"
+         android:id="@+id/tv_longitude" />
 
     <TextView
-        style="@style/TextView"
-        android:layout_below="@id/tv_longitude"
-        android:text="@string/elevation"
-        android:id="@+id/tv_elevation"/>
+         android:layout_below="@id/tv_longitude"
+         style="@style/TextView"
+         android:text="@string/elevation"
+         android:id="@+id/tv_elevation" />
 
     <TextView
-        style="@style/TextView"
-        android:layout_below="@id/tv_elevation"
-        android:text="@string/acuration"
-        android:id="@+id/tv_acuration"/>
+         android:layout_below="@id/tv_elevation"
+         style="@style/TextView"
+         android:text="@string/acuration"
+         android:id="@+id/tv_acuration" />
 
     <Button
-        android:layout_width="179dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tv_acuration"
-        android:layout_marginTop="79dp"
-        android:layout_centerHorizontal="true"
-        android:text="@string/find_location"
-        android:textAllCaps="false"
-        android:id="@+id/btn_find" />
+         android:layout_height="wrap_content"
+         android:layout_width="179dp"
+         android:layout_below="@id/tv_acuration"
+         android:layout_centerHorizontal="true"
+         android:textAllCaps="false"
+         android:layout_marginTop="79dp"
+         android:text="@string/find_location"
+         android:id="@+id/btn_find" />
 
 </RelativeLayout>
