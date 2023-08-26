@@ -12,6 +12,9 @@ import com.google.android.gms.location.LocationServices
 import kotlin.math.abs
 import kotlin.math.round
 import android.location.Geocoder
+import android.location.Location
+import androidx.annotation.RequiresApi
+import org.w3c.dom.Text
 import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
@@ -21,10 +24,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var longitude: TextView
     private lateinit var elevation: TextView
     private lateinit var acuration: TextView
+    private lateinit var hasAltitude: TextView
     var doubleLatitude = 0.0
     var doubleLongitude = 0.0
     var doubleElevation = 0.0
-    var floatAcuration = 0.0F
+    var floatAcuration = 0.0f
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +39,8 @@ class MainActivity : AppCompatActivity() {
         longitude = findViewById(R.id.tv_longitude)
         elevation = findViewById(R.id.tv_elevation)
         acuration = findViewById(R.id.tv_acuration)
+
+
         val btnRefresh = findViewById<Button>(R.id.btn_find)
 
         btnRefresh.setOnClickListener {
@@ -63,14 +69,16 @@ class MainActivity : AppCompatActivity() {
                 doubleLongitude = it.longitude
                 doubleElevation = it.altitude
                 floatAcuration = it.accuracy
+
                 latitude.text = "Latitude: ${convertToDegrees(doubleLatitude)}"
                 longitude.text = "Longitude: ${convertToDegrees(doubleLongitude)}"
-                elevation.text = "Elevation: ${doubleElevation.round(2)} meter"
-                acuration.text = "Acuration: $floatAcuration meter"
-                // kode getKecamatan
+                elevation.text = "Elevation ellipsoid: ${doubleElevation.round(2)} meter"
+                acuration.text = "Acuration : $floatAcuration meter"
+
                 getAddress(doubleLatitude, doubleLongitude)
             }
         }
+
     }
     
     private fun getAddress(latitude: Double, longitude: Double) {
@@ -79,9 +87,11 @@ class MainActivity : AppCompatActivity() {
             val addresses = geocoder.getFromLocation(latitude, longitude, 1)
             if (!addresses.isNullOrEmpty()) {
                 val address = addresses[0]
-                val kecamatan = address.subLocality
+                val desa = address.subLocality
+                val provinsi = address.adminArea
+                val negara = address.countryName
                 // set text ke TextView dengan id tv_kecamatan
-                findViewById<TextView>(R.id.tv_kecamatan).text = "$kecamatan"
+                findViewById<TextView>(R.id.tv_kecamatan).text = "$desa, $provinsi, $negara"
             } else {
                 // handle kasus ketika addresses kosong atau null
                 findViewById<TextView>(R.id.tv_kecamatan).text = "Error kecamatan tidak ditemukan"
@@ -90,6 +100,8 @@ class MainActivity : AppCompatActivity() {
             e.printStackTrace()
         }
     }
+
+
 
 
     private fun convertToDegrees(decimals: Double): String {

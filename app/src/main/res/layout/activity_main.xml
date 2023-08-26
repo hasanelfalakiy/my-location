@@ -36,6 +36,7 @@
          android:text="@string/acuration"
          android:id="@+id/tv_acuration" />
 
+
     <Button
          android:layout_height="wrap_content"
          android:layout_width="179dp"
